@@ -1,0 +1,3698 @@
+openapi: 3.0.0
+info:
+  contact:
+    email: mike.ralphson@gmail.com
+    name: Mike Ralphson
+    url: https://github.com/mermade/aws2openapi
+    x-twitter: PermittedSoc
+  description: Amazon Managed Service for Prometheus
+  license:
+    name: Apache 2.0 License
+    url: http://www.apache.org/licenses/
+  termsOfService: https://aws.amazon.com/service-terms/
+  title: Amazon Prometheus Service
+  version: 2020-08-01
+  x-release: v4
+  x-logo:
+    url: https://twitter.com/awscloud/profile_image?size=original
+    backgroundColor: '#FFFFFF'
+  x-providerName: amazonaws.com
+  x-serviceName: amp
+  x-aws-signingName: aps
+  x-origin:
+  - contentType: application/json
+    url: https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/amp-2020-08-01.normal.json
+    converter:
+      url: https://github.com/mermade/aws2openapi
+      version: 1.0.0
+    x-apisguru-driver: external
+  x-apiClientRegistration:
+    url: https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct
+  x-apisguru-categories:
+  - cloud
+  x-preferred: true
+externalDocs:
+  description: Amazon Web Services documentation
+  url: https://docs.aws.amazon.com/aps/
+servers:
+- description: The Amazon Prometheus Service multi-region endpoint
+  url: "http://aps.{region}.amazonaws.com"
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+- description: The Amazon Prometheus Service multi-region endpoint
+  url: "https://aps.{region}.amazonaws.com"
+  variables:
+    region:
+      default: us-east-1
+      description: The AWS region
+      enum:
+      - us-east-1
+      - us-east-2
+      - us-west-1
+      - us-west-2
+      - us-gov-west-1
+      - us-gov-east-1
+      - ca-central-1
+      - eu-north-1
+      - eu-west-1
+      - eu-west-2
+      - eu-west-3
+      - eu-central-1
+      - eu-south-1
+      - af-south-1
+      - ap-northeast-1
+      - ap-northeast-2
+      - ap-northeast-3
+      - ap-southeast-1
+      - ap-southeast-2
+      - ap-east-1
+      - ap-south-1
+      - sa-east-1
+      - me-south-1
+- description: The Amazon Prometheus Service endpoint for China (Beijing) and China
+    (Ningxia)
+  url: "http://aps.{region}.amazonaws.com.cn"
+  variables:
+    region:
+      default: cn-north-1
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+- description: The Amazon Prometheus Service endpoint for China (Beijing) and China
+    (Ningxia)
+  url: "https://aps.{region}.amazonaws.com.cn"
+  variables:
+    region:
+      default: cn-north-1
+      description: The AWS region
+      enum:
+      - cn-north-1
+      - cn-northwest-1
+security:
+- hmac: []
+paths:
+  /workspaces/{workspaceId}/alertmanager/definition:
+    delete:
+      description: Deletes an alert manager definition.
+      operationId: DeleteAlertManagerDefinition
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace in which to delete the alert manager
+          definition.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: "Optional, unique, case-sensitive, user-provided identifier to\
+          \ ensure the idempotency of the request."
+        explode: true
+        in: query
+        name: clientToken
+        required: false
+        schema:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    get:
+      description: Describes an alert manager definition.
+      operationId: DescribeAlertManagerDefinition
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to describe.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribeAlertManagerDefinitionResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    post:
+      description: Create an alert manager definition.
+      operationId: CreateAlertManagerDefinition
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace in which to create the alert manager
+          definition.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAlertManagerDefinition_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAlertManagerDefinitionResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "486":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      description: Update an alert manager definition.
+      operationId: PutAlertManagerDefinition
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace in which to update the alert manager
+          definition.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutAlertManagerDefinition_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutAlertManagerDefinitionResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "486":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workspaces/{workspaceId}/logging:
+    delete:
+      description: Delete logging configuration.
+      operationId: DeleteLoggingConfiguration
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to vend logs to.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: "Optional, unique, case-sensitive, user-provided identifier to\
+          \ ensure the idempotency of the request."
+        explode: true
+        in: query
+        name: clientToken
+        required: false
+        schema:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    get:
+      description: Describes logging configuration.
+      operationId: DescribeLoggingConfiguration
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to vend logs to.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribeLoggingConfigurationResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    post:
+      description: Create logging configuration.
+      operationId: CreateLoggingConfiguration
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to vend logs to.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLoggingConfiguration_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLoggingConfigurationResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    put:
+      description: Update logging configuration.
+      operationId: UpdateLoggingConfiguration
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to vend logs to.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLoggingConfiguration_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLoggingConfigurationResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workspaces/{workspaceId}/rulegroupsnamespaces:
+    get:
+      description: Lists rule groups namespaces.
+      operationId: ListRuleGroupsNamespaces
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: Optional filter for rule groups namespace name. Only the rule
+          groups namespace that begin with this value will be returned.
+        explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          description: The namespace name that the rule group belong to.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: form
+      - description: Pagination token to request the next page in a paginated list.
+          This token is obtained from the output of the previous ListRuleGroupsNamespaces
+          request.
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          description: A token used to access the next page in a paginated result
+            set.
+          type: string
+        style: form
+      - description: "Maximum results to return in response (default=100, maximum=1000)."
+        explode: true
+        in: query
+        name: maxResults
+        required: false
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRuleGroupsNamespacesResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    post:
+      description: Create a rule group namespace.
+      operationId: CreateRuleGroupsNamespace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace in which to create the rule group namespace.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRuleGroupsNamespace_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRuleGroupsNamespaceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "486":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workspaces:
+    get:
+      description: "Lists all AMP workspaces, including workspaces being created or\
+        \ deleted."
+      operationId: ListWorkspaces
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Pagination token to request the next page in a paginated list.
+          This token is obtained from the output of the previous ListWorkspaces request.
+        explode: true
+        in: query
+        name: nextToken
+        required: false
+        schema:
+          description: A token used to access the next page in a paginated result
+            set.
+          type: string
+        style: form
+      - description: Optional filter for workspace alias. Only the workspaces with
+          aliases that begin with this value will be returned.
+        explode: true
+        in: query
+        name: alias
+        required: false
+        schema:
+          description: A user-assigned workspace alias.
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      - description: "Maximum results to return in response (default=100, maximum=1000)."
+        explode: true
+        in: query
+        name: maxResults
+        required: false
+        schema:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListWorkspacesResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    post:
+      description: Creates a new AMP workspace.
+      operationId: CreateWorkspace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkspace_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateWorkspaceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workspaces/{workspaceId}/rulegroupsnamespaces/{name}:
+    delete:
+      description: Delete a rule groups namespace.
+      operationId: DeleteRuleGroupsNamespace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to delete rule group definition.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: The rule groups namespace name.
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          description: The namespace name that the rule group belong to.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: "Optional, unique, case-sensitive, user-provided identifier to\
+          \ ensure the idempotency of the request."
+        explode: true
+        in: query
+        name: clientToken
+        required: false
+        schema:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    get:
+      description: Describe a rule groups namespace.
+      operationId: DescribeRuleGroupsNamespace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to describe.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: The rule groups namespace.
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          description: The namespace name that the rule group belong to.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribeRuleGroupsNamespaceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    put:
+      description: Update a rule groups namespace.
+      operationId: PutRuleGroupsNamespace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace in which to update the rule group namespace.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: The rule groups namespace name.
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          description: The namespace name that the rule group belong to.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutRuleGroupsNamespace_request'
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutRuleGroupsNamespaceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "486":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /workspaces/{workspaceId}:
+    delete:
+      description: Deletes an AMP workspace.
+      operationId: DeleteWorkspace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to delete.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      - description: "Optional, unique, case-sensitive, user-provided identifier to\
+          \ ensure the idempotency of the request."
+        explode: true
+        in: query
+        name: clientToken
+        required: false
+        schema:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        style: form
+      responses:
+        "202":
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    get:
+      description: Describes an existing AMP workspace.
+      operationId: DescribeWorkspace
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace to describe.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DescribeWorkspaceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+  /tags/{resourceArn}:
+    get:
+      description: Lists the tags you have assigned to the resource.
+      operationId: ListTagsForResource
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ARN of the resource.
+        explode: false
+        in: path
+        name: resourceArn
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListTagsForResourceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+    post:
+      description: Creates tags for the specified resource.
+      operationId: TagResource
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ARN of the resource.
+        explode: false
+        in: path
+        name: resourceArn
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagResource_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResourceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /tags/{resourceArn}#tagKeys:
+    delete:
+      description: Deletes tags from the specified resource.
+      operationId: UntagResource
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ARN of the resource.
+        explode: false
+        in: path
+        name: resourceArn
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: One or more tag keys
+        explode: true
+        in: query
+        name: tagKeys
+        required: true
+        schema:
+          items:
+            $ref: '#/components/schemas/TagKey'
+          type: array
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UntagResourceResponse'
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+      x-accepts:
+      - application/json
+  /workspaces/{workspaceId}/alias:
+    post:
+      description: Updates an AMP workspace alias.
+      operationId: UpdateWorkspaceAlias
+      parameters:
+      - explode: false
+        in: header
+        name: X-Amz-Content-Sha256
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Date
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Algorithm
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Credential
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Security-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-Signature
+        required: false
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: header
+        name: X-Amz-SignedHeaders
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The ID of the workspace being updated.
+        explode: false
+        in: path
+        name: workspaceId
+        required: true
+        schema:
+          description: A workspace ID.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkspaceAlias_request'
+        required: true
+      responses:
+        "204":
+          description: Success
+        "480":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThrottlingException'
+          description: ThrottlingException
+        "481":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictException'
+          description: ConflictException
+        "482":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationException'
+          description: ValidationException
+        "483":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceNotFoundException'
+          description: ResourceNotFoundException
+        "484":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessDeniedException'
+          description: AccessDeniedException
+        "485":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerException'
+          description: InternalServerException
+        "486":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceQuotaExceededException'
+          description: ServiceQuotaExceededException
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  parameters:
+    X-Amz-Content-Sha256:
+      explode: false
+      in: header
+      name: X-Amz-Content-Sha256
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-Date:
+      explode: false
+      in: header
+      name: X-Amz-Date
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-Algorithm:
+      explode: false
+      in: header
+      name: X-Amz-Algorithm
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-Credential:
+      explode: false
+      in: header
+      name: X-Amz-Credential
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-Security-Token:
+      explode: false
+      in: header
+      name: X-Amz-Security-Token
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-Signature:
+      explode: false
+      in: header
+      name: X-Amz-Signature
+      required: false
+      schema:
+        type: string
+      style: simple
+    X-Amz-SignedHeaders:
+      explode: false
+      in: header
+      name: X-Amz-SignedHeaders
+      required: false
+      schema:
+        type: string
+      style: simple
+  schemas:
+    CreateAlertManagerDefinitionResponse:
+      description: Represents the output of a CreateAlertManagerDefinition operation.
+      example:
+        status:
+          statusReason: ""
+          statusCode: ""
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateAlertManagerDefinitionResponse_status'
+      required:
+      - status
+      type: object
+    ThrottlingException: {}
+    ConflictException: {}
+    ValidationException: {}
+    ResourceNotFoundException: {}
+    AccessDeniedException: {}
+    InternalServerException: {}
+    ServiceQuotaExceededException: {}
+    CreateLoggingConfigurationResponse:
+      description: Represents the output of a CreateLoggingConfiguration operation.
+      example:
+        status:
+          statusReason: ""
+          statusCode: ""
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateLoggingConfigurationResponse_status'
+      required:
+      - status
+      type: object
+    CreateRuleGroupsNamespaceResponse:
+      description: Represents the output of a CreateRuleGroupsNamespace operation.
+      example:
+        name: ""
+        arn: ""
+        status:
+          statusReason: ""
+          statusCode: ""
+        tags: ""
+      properties:
+        name:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceName'
+          - description: The rule groups namespace name.
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceArn'
+          - description: The Amazon Resource Name (ARN) of this rule groups namespace.
+        status:
+          $ref: '#/components/schemas/CreateRuleGroupsNamespaceResponse_status'
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this rule groups namespace.
+      required:
+      - arn
+      - name
+      - status
+      type: object
+    TagValue:
+      maxLength: 256
+      minLength: 0
+      pattern: "([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)"
+      type: string
+    CreateWorkspaceResponse:
+      description: Represents the output of a CreateWorkspace operation.
+      example:
+        arn: ""
+        workspaceId: ""
+        status:
+          statusCode: ""
+        tags: ""
+      properties:
+        workspaceId:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceId'
+          - description: The generated ID of the workspace that was just created.
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceArn'
+          - description: The ARN of the workspace that was just created.
+        status:
+          $ref: '#/components/schemas/CreateWorkspaceResponse_status'
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this workspace.
+      required:
+      - arn
+      - status
+      - workspaceId
+      type: object
+    DescribeAlertManagerDefinitionResponse:
+      description: Represents the output of a DescribeAlertManagerDefinition operation.
+      example:
+        alertManagerDefinition:
+          createdAt: ""
+          data: ""
+          modifiedAt: ""
+          status:
+            statusReason: ""
+            statusCode: ""
+      properties:
+        alertManagerDefinition:
+          $ref: '#/components/schemas/DescribeAlertManagerDefinitionResponse_alertManagerDefinition'
+      required:
+      - alertManagerDefinition
+      type: object
+    DescribeLoggingConfigurationResponse:
+      description: Represents the output of a DescribeLoggingConfiguration operation.
+      example:
+        loggingConfiguration:
+          createdAt: ""
+          workspace: ""
+          logGroupArn: ""
+          modifiedAt: ""
+          status:
+            statusReason: ""
+            statusCode: ""
+      properties:
+        loggingConfiguration:
+          $ref: '#/components/schemas/DescribeLoggingConfigurationResponse_loggingConfiguration'
+      required:
+      - loggingConfiguration
+      type: object
+    DescribeRuleGroupsNamespaceResponse:
+      description: Represents the output of a DescribeRuleGroupsNamespace operation.
+      example:
+        ruleGroupsNamespace:
+          createdAt: ""
+          data: ""
+          modifiedAt: ""
+          name: ""
+          arn: ""
+          status:
+            statusReason: ""
+            statusCode: ""
+          tags: ""
+      properties:
+        ruleGroupsNamespace:
+          $ref: '#/components/schemas/DescribeRuleGroupsNamespaceResponse_ruleGroupsNamespace'
+      required:
+      - ruleGroupsNamespace
+      type: object
+    DescribeWorkspaceResponse:
+      description: Represents the output of a DescribeWorkspace operation.
+      example:
+        workspace:
+          createdAt: ""
+          prometheusEndpoint: ""
+          alias: ""
+          arn: ""
+          workspaceId: ""
+          status:
+            statusCode: ""
+          tags: ""
+      properties:
+        workspace:
+          $ref: '#/components/schemas/DescribeWorkspaceResponse_workspace'
+      required:
+      - workspace
+      type: object
+    ListRuleGroupsNamespacesResponse:
+      description: Represents the output of a ListRuleGroupsNamespaces operation.
+      example:
+        nextToken: ""
+        ruleGroupsNamespaces: ""
+      properties:
+        ruleGroupsNamespaces:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceSummaryList'
+          - description: The list of the selected rule groups namespaces.
+        nextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: Pagination token to use when requesting the next page in
+              this list.
+      required:
+      - ruleGroupsNamespaces
+      type: object
+    ListTagsForResourceResponse:
+      example:
+        tags:
+          key: null
+      properties:
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/TagValue'
+          description: The list of tags assigned to the resource.
+          maxProperties: 50
+          minProperties: 0
+          type: object
+      type: object
+    ListWorkspacesResponse:
+      description: Represents the output of a ListWorkspaces operation.
+      example:
+        nextToken: ""
+        workspaces: ""
+      properties:
+        workspaces:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceSummaryList'
+          - description: "The list of existing workspaces, including those undergoing\
+              \ creation or deletion."
+        nextToken:
+          allOf:
+          - $ref: '#/components/schemas/PaginationToken'
+          - description: Pagination token to use when requesting the next page in
+              this list.
+      required:
+      - workspaces
+      type: object
+    PutAlertManagerDefinitionResponse:
+      description: Represents the output of a PutAlertManagerDefinition operation.
+      example:
+        status:
+          statusReason: ""
+          statusCode: ""
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateAlertManagerDefinitionResponse_status'
+      required:
+      - status
+      type: object
+    PutRuleGroupsNamespaceResponse:
+      description: Represents the output of a PutRuleGroupsNamespace operation.
+      example:
+        name: ""
+        arn: ""
+        status:
+          statusReason: ""
+          statusCode: ""
+        tags: ""
+      properties:
+        name:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceName'
+          - description: The rule groups namespace name.
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceArn'
+          - description: The Amazon Resource Name (ARN) of this rule groups namespace.
+        status:
+          $ref: '#/components/schemas/CreateRuleGroupsNamespaceResponse_status'
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this rule groups namespace.
+      required:
+      - arn
+      - name
+      - status
+      type: object
+    TagResourceResponse:
+      properties: {}
+      type: object
+    UntagResourceResponse:
+      properties: {}
+      type: object
+    TagKey:
+      maxLength: 128
+      minLength: 1
+      pattern: "([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)"
+      type: string
+    UpdateLoggingConfigurationResponse:
+      description: Represents the output of an UpdateLoggingConfiguration operation.
+      example:
+        status:
+          statusReason: ""
+          statusCode: ""
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateLoggingConfigurationResponse_status'
+      required:
+      - status
+      type: object
+    AlertManagerDefinitionData:
+      description: The alert manager definition data.
+      type: string
+    AlertManagerDefinitionStatus:
+      description: Represents the status of a definition.
+      properties:
+        statusCode:
+          allOf:
+          - $ref: '#/components/schemas/AlertManagerDefinitionStatusCode'
+          - description: Status code of this definition.
+        statusReason:
+          allOf:
+          - $ref: '#/components/schemas/String'
+          - description: The reason for failure if any.
+      required:
+      - statusCode
+      type: object
+    Timestamp:
+      format: date-time
+      type: string
+    AlertManagerDefinitionDescription:
+      description: Represents the properties of an alert manager definition.
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateAlertManagerDefinitionResponse_status'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/AlertManagerDefinitionData'
+          - description: The alert manager definition.
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the alert manager definition was created.
+        modifiedAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the alert manager definition was modified.
+      required:
+      - createdAt
+      - data
+      - modifiedAt
+      - status
+      type: object
+    AlertManagerDefinitionStatusCode:
+      description: State of an alert manager definition.
+      enum:
+      - CREATING
+      - ACTIVE
+      - UPDATING
+      - DELETING
+      - CREATION_FAILED
+      - UPDATE_FAILED
+      type: string
+    String:
+      type: string
+    WorkspaceId:
+      description: A workspace ID.
+      maxLength: 64
+      minLength: 1
+      pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+      type: string
+    IdempotencyToken:
+      description: An identifier used to ensure the idempotency of a write request.
+      maxLength: 64
+      minLength: 1
+      pattern: "[!-~]+"
+      type: string
+    CreateAlertManagerDefinitionRequest:
+      description: Represents the input of a CreateAlertManagerDefinition operation.
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/AlertManagerDefinitionData'
+          - description: The alert manager definition data.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      required:
+      - data
+      title: CreateAlertManagerDefinitionRequest
+      type: object
+    LogGroupArn:
+      pattern: "arn:aws[a-z0-9-]*:logs:[a-z0-9-]+:\\d{12}:log-group:[A-Za-z0-9\\.\\\
+        -\\_\\#/]{1,512}\\:\\*"
+      type: string
+    CreateLoggingConfigurationRequest:
+      description: Represents the input of a CreateLoggingConfiguration operation.
+      properties:
+        logGroupArn:
+          allOf:
+          - $ref: '#/components/schemas/LogGroupArn'
+          - description: The ARN of the CW log group to which the vended log data
+              will be published.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      required:
+      - logGroupArn
+      title: CreateLoggingConfigurationRequest
+      type: object
+    LoggingConfigurationStatus:
+      description: Represents the status of a logging configuration.
+      properties:
+        statusCode:
+          allOf:
+          - $ref: '#/components/schemas/LoggingConfigurationStatusCode'
+          - description: Status code of the logging configuration.
+        statusReason:
+          allOf:
+          - $ref: '#/components/schemas/String'
+          - description: The reason for failure if any.
+      required:
+      - statusCode
+      type: object
+    RuleGroupsNamespaceName:
+      description: The namespace name that the rule group belong to.
+      maxLength: 64
+      minLength: 1
+      pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+      type: string
+    RuleGroupsNamespaceData:
+      description: The rule groups namespace data.
+      type: string
+    TagMap:
+      additionalProperties:
+        $ref: '#/components/schemas/TagValue'
+      description: The list of tags assigned to the resource.
+      maxProperties: 50
+      minProperties: 0
+      type: object
+    CreateRuleGroupsNamespaceRequest:
+      description: Represents the input of a CreateRuleGroupsNamespace operation.
+      example:
+        data: ""
+        clientToken: ""
+        name: ""
+        tags: ""
+      properties:
+        name:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceName'
+          - description: The rule groups namespace name.
+        data:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceData'
+          - description: The namespace data that define the rule groups.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: "Optional, user-provided tags for this rule groups namespace."
+      required:
+      - data
+      - name
+      title: CreateRuleGroupsNamespaceRequest
+      type: object
+    RuleGroupsNamespaceArn:
+      description: An ARN identifying a rule groups namespace.
+      type: string
+    RuleGroupsNamespaceStatus:
+      description: Represents the status of a namespace.
+      properties:
+        statusCode:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceStatusCode'
+          - description: Status code of this namespace.
+        statusReason:
+          allOf:
+          - $ref: '#/components/schemas/String'
+          - description: The reason for failure if any.
+      required:
+      - statusCode
+      type: object
+    WorkspaceAlias:
+      description: A user-assigned workspace alias.
+      maxLength: 100
+      minLength: 1
+      type: string
+    CreateWorkspaceRequest:
+      description: Represents the input of a CreateWorkspace operation.
+      example:
+        clientToken: ""
+        alias: ""
+        tags: ""
+      properties:
+        alias:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceAlias'
+          - description: An optional user-assigned alias for this workspace. This
+              alias is for user reference and does not need to be unique.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: "Optional, user-provided tags for this workspace."
+      title: CreateWorkspaceRequest
+      type: object
+    WorkspaceArn:
+      description: An ARN identifying a Workspace.
+      type: string
+    WorkspaceStatus:
+      description: Represents the status of a workspace.
+      properties:
+        statusCode:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceStatusCode'
+          - description: Status code of this workspace.
+      required:
+      - statusCode
+      type: object
+    DeleteAlertManagerDefinitionRequest:
+      description: Represents the input of a DeleteAlertManagerDefinition operation.
+      properties: {}
+      title: DeleteAlertManagerDefinitionRequest
+      type: object
+    DeleteLoggingConfigurationRequest:
+      description: Represents the input of a DeleteLoggingConfiguration operation.
+      properties: {}
+      title: DeleteLoggingConfigurationRequest
+      type: object
+    DeleteRuleGroupsNamespaceRequest:
+      description: Represents the input of a DeleteRuleGroupsNamespace operation.
+      properties: {}
+      title: DeleteRuleGroupsNamespaceRequest
+      type: object
+    DeleteWorkspaceRequest:
+      description: Represents the input of a DeleteWorkspace operation.
+      properties: {}
+      title: DeleteWorkspaceRequest
+      type: object
+    DescribeAlertManagerDefinitionRequest:
+      description: Represents the input of a DescribeAlertManagerDefinition operation.
+      properties: {}
+      title: DescribeAlertManagerDefinitionRequest
+      type: object
+    DescribeLoggingConfigurationRequest:
+      description: Represents the input of a DescribeLoggingConfiguration operation.
+      properties: {}
+      title: DescribeLoggingConfigurationRequest
+      type: object
+    LoggingConfigurationMetadata:
+      description: Represents the properties of a logging configuration metadata.
+      properties:
+        status:
+          $ref: '#/components/schemas/CreateLoggingConfigurationResponse_status'
+        workspace:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceId'
+          - description: The workspace where the logging configuration exists.
+        logGroupArn:
+          allOf:
+          - $ref: '#/components/schemas/LogGroupArn'
+          - description: The ARN of the CW log group to which the vended log data
+              will be published.
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the logging configuration was created.
+        modifiedAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the logging configuration was modified.
+      required:
+      - createdAt
+      - logGroupArn
+      - modifiedAt
+      - status
+      - workspace
+      type: object
+    DescribeRuleGroupsNamespaceRequest:
+      description: Represents the input of a DescribeRuleGroupsNamespace operation.
+      properties: {}
+      title: DescribeRuleGroupsNamespaceRequest
+      type: object
+    RuleGroupsNamespaceDescription:
+      description: Represents a description of the rule groups namespace.
+      properties:
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceArn'
+          - description: The Amazon Resource Name (ARN) of this rule groups namespace.
+        name:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceName'
+          - description: The rule groups namespace name.
+        status:
+          $ref: '#/components/schemas/CreateRuleGroupsNamespaceResponse_status'
+        data:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceData'
+          - description: The rule groups namespace data.
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the rule groups namespace was created.
+        modifiedAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the rule groups namespace was modified.
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this rule groups namespace.
+      required:
+      - arn
+      - createdAt
+      - data
+      - modifiedAt
+      - name
+      - status
+      type: object
+    DescribeWorkspaceRequest:
+      description: Represents the input of a DescribeWorkspace operation.
+      properties: {}
+      title: DescribeWorkspaceRequest
+      type: object
+    WorkspaceDescription:
+      description: Represents the properties of a workspace.
+      properties:
+        workspaceId:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceId'
+          - description: Unique string identifying this workspace.
+        alias:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceAlias'
+          - description: Alias of this workspace.
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceArn'
+          - description: The Amazon Resource Name (ARN) of this workspace.
+        status:
+          $ref: '#/components/schemas/WorkspaceDescription_status'
+        prometheusEndpoint:
+          allOf:
+          - $ref: '#/components/schemas/Uri'
+          - description: Prometheus endpoint URI.
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the workspace was created.
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this workspace.
+      required:
+      - arn
+      - createdAt
+      - status
+      - workspaceId
+      type: object
+    PaginationToken:
+      description: A token used to access the next page in a paginated result set.
+      type: string
+    ListRuleGroupsNamespacesRequestMaxResultsInteger:
+      maximum: 1000
+      minimum: 1
+      type: integer
+    ListRuleGroupsNamespacesRequest:
+      description: Represents the input of a ListRuleGroupsNamespaces operation.
+      properties: {}
+      title: ListRuleGroupsNamespacesRequest
+      type: object
+    RuleGroupsNamespaceSummaryList:
+      description: A list of rule groups namespace summary.
+      items:
+        $ref: '#/components/schemas/RuleGroupsNamespaceSummary'
+      type: array
+    ListTagsForResourceRequest:
+      properties: {}
+      title: ListTagsForResourceRequest
+      type: object
+    ListWorkspacesRequestMaxResultsInteger:
+      maximum: 1000
+      minimum: 1
+      type: integer
+    ListWorkspacesRequest:
+      description: Represents the input of a ListWorkspaces operation.
+      properties: {}
+      title: ListWorkspacesRequest
+      type: object
+    WorkspaceSummaryList:
+      description: A list of workspace summaries.
+      items:
+        $ref: '#/components/schemas/WorkspaceSummary'
+      type: array
+    LoggingConfigurationStatusCode:
+      description: State of a logging configuration.
+      enum:
+      - CREATING
+      - ACTIVE
+      - UPDATING
+      - DELETING
+      - CREATION_FAILED
+      - UPDATE_FAILED
+      type: string
+    PutAlertManagerDefinitionRequest:
+      description: Represents the input of a PutAlertManagerDefinition operation.
+      example:
+        data: ""
+        clientToken: ""
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/AlertManagerDefinitionData'
+          - description: The alert manager definition data.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      required:
+      - data
+      title: PutAlertManagerDefinitionRequest
+      type: object
+    PutRuleGroupsNamespaceRequest:
+      description: Represents the input of a PutRuleGroupsNamespace operation.
+      example:
+        data: ""
+        clientToken: ""
+      properties:
+        data:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceData'
+          - description: The namespace data that define the rule groups.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      required:
+      - data
+      title: PutRuleGroupsNamespaceRequest
+      type: object
+    RuleGroupsNamespaceStatusCode:
+      description: State of a namespace.
+      enum:
+      - CREATING
+      - ACTIVE
+      - UPDATING
+      - DELETING
+      - CREATION_FAILED
+      - UPDATE_FAILED
+      type: string
+    RuleGroupsNamespaceSummary:
+      description: Represents a summary of the rule groups namespace.
+      properties:
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceArn'
+          - description: The Amazon Resource Name (ARN) of this rule groups namespace.
+        name:
+          allOf:
+          - $ref: '#/components/schemas/RuleGroupsNamespaceName'
+          - description: The rule groups namespace name.
+        status:
+          $ref: '#/components/schemas/CreateRuleGroupsNamespaceResponse_status'
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the rule groups namespace was created.
+        modifiedAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the rule groups namespace was modified.
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this rule groups namespace.
+      required:
+      - arn
+      - createdAt
+      - modifiedAt
+      - name
+      - status
+      type: object
+    TagKeys:
+      items:
+        $ref: '#/components/schemas/TagKey'
+      type: array
+    TagResourceRequest:
+      example:
+        tags:
+          key: null
+      properties:
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/TagValue'
+          description: The list of tags assigned to the resource.
+          maxProperties: 50
+          minProperties: 0
+          type: object
+      required:
+      - tags
+      title: TagResourceRequest
+      type: object
+    UntagResourceRequest:
+      properties: {}
+      title: UntagResourceRequest
+      type: object
+    UpdateLoggingConfigurationRequest:
+      description: Represents the input of an UpdateLoggingConfiguration operation.
+      example:
+        logGroupArn: ""
+        clientToken: ""
+      properties:
+        logGroupArn:
+          allOf:
+          - $ref: '#/components/schemas/LogGroupArn'
+          - description: The ARN of the CW log group to which the vended log data
+              will be published.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      required:
+      - logGroupArn
+      title: UpdateLoggingConfigurationRequest
+      type: object
+    UpdateWorkspaceAliasRequest:
+      description: Represents the input of an UpdateWorkspaceAlias operation.
+      example:
+        clientToken: ""
+        alias: ""
+      properties:
+        alias:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceAlias'
+          - description: The new alias of the workspace.
+        clientToken:
+          allOf:
+          - $ref: '#/components/schemas/IdempotencyToken'
+          - description: "Optional, unique, case-sensitive, user-provided identifier\
+              \ to ensure the idempotency of the request."
+      title: UpdateWorkspaceAliasRequest
+      type: object
+    Uri:
+      maxLength: 1024
+      minLength: 1
+      type: string
+    WorkspaceStatusCode:
+      description: State of a workspace.
+      enum:
+      - CREATING
+      - ACTIVE
+      - UPDATING
+      - DELETING
+      - CREATION_FAILED
+      type: string
+    WorkspaceSummary:
+      description: Represents a summary of the properties of a workspace.
+      properties:
+        workspaceId:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceId'
+          - description: Unique string identifying this workspace.
+        alias:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceAlias'
+          - description: Alias of this workspace.
+        arn:
+          allOf:
+          - $ref: '#/components/schemas/WorkspaceArn'
+          - description: The AmazonResourceName of this workspace.
+        status:
+          $ref: '#/components/schemas/WorkspaceDescription_status'
+        createdAt:
+          allOf:
+          - $ref: '#/components/schemas/Timestamp'
+          - description: The time when the workspace was created.
+        tags:
+          allOf:
+          - $ref: '#/components/schemas/TagMap'
+          - description: The tags of this workspace.
+      required:
+      - arn
+      - createdAt
+      - status
+      - workspaceId
+      type: object
+    PutAlertManagerDefinition_request:
+      properties:
+        data:
+          description: The alert manager definition data.
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+      required:
+      - data
+      type: object
+    UpdateLoggingConfiguration_request:
+      properties:
+        logGroupArn:
+          description: The ARN of the CW log group to which the vended log data will
+            be published.
+          pattern: "arn:aws[a-z0-9-]*:logs:[a-z0-9-]+:\\d{12}:log-group:[A-Za-z0-9\\\
+            .\\-\\_\\#/]{1,512}\\:\\*"
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+      required:
+      - logGroupArn
+      type: object
+    CreateRuleGroupsNamespace_request:
+      properties:
+        name:
+          description: The namespace name that the rule group belong to.
+          maxLength: 64
+          minLength: 1
+          pattern: ".*[0-9A-Za-z][-.0-9A-Z_a-z]*.*"
+          type: string
+        data:
+          description: The rule groups namespace data.
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/TagValue'
+          description: The list of tags assigned to the resource.
+          maxProperties: 50
+          minProperties: 0
+          type: object
+      required:
+      - data
+      - name
+      type: object
+    CreateWorkspace_request:
+      properties:
+        alias:
+          description: A user-assigned workspace alias.
+          maxLength: 100
+          minLength: 1
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/TagValue'
+          description: The list of tags assigned to the resource.
+          maxProperties: 50
+          minProperties: 0
+          type: object
+      type: object
+    PutRuleGroupsNamespace_request:
+      properties:
+        data:
+          description: The rule groups namespace data.
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+      required:
+      - data
+      type: object
+    TagResource_request:
+      properties:
+        tags:
+          additionalProperties:
+            $ref: '#/components/schemas/TagValue'
+          description: The list of tags assigned to the resource.
+          maxProperties: 50
+          minProperties: 0
+          type: object
+      required:
+      - tags
+      type: object
+    UpdateWorkspaceAlias_request:
+      properties:
+        alias:
+          description: A user-assigned workspace alias.
+          maxLength: 100
+          minLength: 1
+          type: string
+        clientToken:
+          description: An identifier used to ensure the idempotency of a write request.
+          maxLength: 64
+          minLength: 1
+          pattern: "[!-~]+"
+          type: string
+      type: object
+    CreateAlertManagerDefinitionResponse_status:
+      allOf:
+      - $ref: '#/components/schemas/AlertManagerDefinitionStatus'
+      - description: The status of alert manager definition.
+      example:
+        statusReason: ""
+        statusCode: ""
+    CreateLoggingConfigurationResponse_status:
+      allOf:
+      - $ref: '#/components/schemas/LoggingConfigurationStatus'
+      - description: The status of the logging configuration.
+      example:
+        statusReason: ""
+        statusCode: ""
+    CreateRuleGroupsNamespaceResponse_status:
+      allOf:
+      - $ref: '#/components/schemas/RuleGroupsNamespaceStatus'
+      - description: The status of rule groups namespace.
+      example:
+        statusReason: ""
+        statusCode: ""
+    CreateWorkspaceResponse_status:
+      allOf:
+      - $ref: '#/components/schemas/WorkspaceStatus'
+      - description: The status of the workspace that was just created (usually CREATING).
+      example:
+        statusCode: ""
+    DescribeAlertManagerDefinitionResponse_alertManagerDefinition:
+      allOf:
+      - $ref: '#/components/schemas/AlertManagerDefinitionDescription'
+      - description: The properties of the selected workspace's alert manager definition.
+      example:
+        createdAt: ""
+        data: ""
+        modifiedAt: ""
+        status:
+          statusReason: ""
+          statusCode: ""
+    DescribeLoggingConfigurationResponse_loggingConfiguration:
+      allOf:
+      - $ref: '#/components/schemas/LoggingConfigurationMetadata'
+      - description: Metadata object containing information about the logging configuration
+          of a workspace.
+      example:
+        createdAt: ""
+        workspace: ""
+        logGroupArn: ""
+        modifiedAt: ""
+        status:
+          statusReason: ""
+          statusCode: ""
+    DescribeRuleGroupsNamespaceResponse_ruleGroupsNamespace:
+      allOf:
+      - $ref: '#/components/schemas/RuleGroupsNamespaceDescription'
+      - description: The selected rule groups namespace.
+      example:
+        createdAt: ""
+        data: ""
+        modifiedAt: ""
+        name: ""
+        arn: ""
+        status:
+          statusReason: ""
+          statusCode: ""
+        tags: ""
+    DescribeWorkspaceResponse_workspace:
+      allOf:
+      - $ref: '#/components/schemas/WorkspaceDescription'
+      - description: The properties of the selected workspace.
+      example:
+        createdAt: ""
+        prometheusEndpoint: ""
+        alias: ""
+        arn: ""
+        workspaceId: ""
+        status:
+          statusCode: ""
+        tags: ""
+    WorkspaceDescription_status:
+      allOf:
+      - $ref: '#/components/schemas/WorkspaceStatus'
+      - description: The status of this workspace.
+      example:
+        statusCode: ""
+  securitySchemes:
+    hmac:
+      description: Amazon Signature authorization v4
+      in: header
+      name: Authorization
+      type: apiKey
+      x-amazon-apigateway-authtype: awsSigv4
+x-hasEquivalentPaths: true
+
